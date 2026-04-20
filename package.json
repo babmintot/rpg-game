@@ -1,0 +1,41 @@
+{
+  "name": "rpg-game",
+  "version": "1.0.0",
+  "description": "RPG game project with modern JS tooling",
+  "keywords": [
+    "rpg",
+    "game",
+    "javascript",
+    "es6"
+  ],
+  "homepage": "https://github.com/babmintot/rpg-game#readme",
+  "bugs": {
+    "url": "https://github.com/babmintot/rpg-game/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babmintot/rpg-game.git"
+  },
+  "license": "ISC",
+  "author": "Valery",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "core-js": "^3.49.0",
+    "pkg": "^5.8.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "globals": "^17.5.0"
+  }
+}
