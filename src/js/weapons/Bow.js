@@ -3,7 +3,7 @@
 import Weapon from './Weapon.js';
 
 export default class Bow extends Weapon {
-  constructor() {
-    super('���', 10, 200, 3);
-  }
+    constructor() {
+        super('Bow', 10, 200, 3);
+    }
 }

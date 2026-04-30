@@ -3,11 +3,11 @@
 import Sword from './Sword.js';
 
 export default class Axe extends Sword {
-  constructor() {
+    constructor() {
     super();
-    this.name = '������';
+     this.name = 'Axe';
     this.attack = 27;
-    this.durability = 800;
-    this.initDurability = 800;
+   this.durability = 800;
+   this.initDurability = 800;
   }
 }

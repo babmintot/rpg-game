@@ -25,7 +25,10 @@
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "core-js": "^3.49.0",
@@ -50,5 +53,24 @@
     "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2",
     "webpack-dev-server": "^5.2.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [ "<rootDir>/tests" ],
+    "testMatch": [ "**/*.test.js" ],
+    "collectCoverageFrom": [
+      "src/js/weapons/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
   }
 }
