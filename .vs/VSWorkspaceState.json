@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\css",
+    "\\src\\js",
+    "\\src\\js\\players",
+    "\\src\\js\\weapons"
   ],
-  "SelectedNode": "\\src\\index.js",
+  "SelectedNode": "\\src\\js\\weapons\\Staff.js",
   "PreviewInSolutionExplorer": false
 }
