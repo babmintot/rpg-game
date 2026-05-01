@@ -3,10 +3,10 @@
 import Staff from './Staff.js';
 
 export default class StormStaff extends Staff {
-    constructor() {
-        super();
-        this.name = 'Storm Staff';
-        this.attack = 10;
-        this.range = 3;
-    }
+  constructor() {
+    super();
+    this.name = 'Storm Staff';
+    this.attack = 10;
+    this.range = 3;
+  }
 }

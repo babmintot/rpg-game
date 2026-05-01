@@ -3,7 +3,7 @@
 import Weapon from './Weapon.js';
 
 export default class Knife extends Weapon {
-    constructor() {
+  constructor() {
     super('Knife', 5, 300, 1);
   }
 }

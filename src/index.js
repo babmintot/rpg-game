@@ -1,6 +1,6 @@
 'use strict';
 
-import { play } from './js/Game.js';
+import { play } from './js/game.js';
 import './css/style.css';
 
 play();
