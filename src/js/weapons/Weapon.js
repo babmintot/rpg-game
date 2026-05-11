@@ -10,6 +10,9 @@ export default class Weapon {
   }
 
   takeDamage(damage) {
+    if (this.durability === Infinity) {
+      return;
+    }
     this.durability -= damage;
     if (this.durability < 0) {
       this.durability = 0;

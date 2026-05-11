@@ -2,6 +2,8 @@
 
 import Archer from './Archer.js';
 import LongBow from '../weapons/LongBow.js';
+import Knife from '../weapons/Knife.js';
+import Arm from '../weapons/Arm.js';
 
 export default class Crossbowman extends Archer {
   constructor(position, name) {
@@ -10,9 +12,17 @@ export default class Crossbowman extends Archer {
     this.attack = 8;
     this.agility = 20;
     this.luck = 15;
-    this.description = '����������';
+    this.description = 'Арбалетчик';
     this.weapon = new LongBow();
   }
 
-  checkWeapon() { }
+  checkWeapon() {
+    if (this.weapon.isBroken()) {
+      if (this.weapon instanceof LongBow) {
+        this.weapon = new Knife();
+      } else if (this.weapon instanceof Knife) {
+        this.weapon = new Arm();
+      }
+    }
+  }
 }

@@ -4,6 +4,9 @@ node_modules/
 # Сборка
 dist/
 
+# Покрытие тестов
+coverage/
+
 # Логи
 *.log
 

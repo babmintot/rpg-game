@@ -11,78 +11,73 @@ import Axe from '../src/js/weapons/Axe.js';
 import StormStaff from '../src/js/weapons/StormStaff.js';
 
 describe('Weapon', () => {
-  test('constructor creates weapon with correct properties', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    expect(weapon.name).toBe('Test');
-    expect(weapon.attack).toBe(20);
-    expect(weapon.durability).toBe(100);
-    expect(weapon.initDurability).toBe(100);
-    expect(weapon.range).toBe(2);
+  test('constructor sets properties', () => {
+    const w = new Weapon('test', 20, 100, 2);
+    expect(w.name).toBe('test');
+    expect(w.attack).toBe(20);
+    expect(w.durability).toBe(100);
+    expect(w.initDurability).toBe(100);
+    expect(w.range).toBe(2);
   });
 
   test('takeDamage reduces durability', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    weapon.takeDamage(30);
-    expect(weapon.durability).toBe(70);
+    const w = new Weapon('test', 20, 100, 2);
+    w.takeDamage(30);
+    expect(w.durability).toBe(70);
   });
 
-  test('takeDamage does not reduce durability below 0', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    weapon.takeDamage(150);
-    expect(weapon.durability).toBe(0);
+  test('takeDamage not below 0', () => {
+    const w = new Weapon('test', 20, 100, 2);
+    w.takeDamage(150);
+    expect(w.durability).toBe(0);
   });
 
-  test('takeDamage does not affect Infinity', () => {
-    const arm = new Arm();
-    arm.takeDamage(1000);
-    expect(arm.durability).toBe(Infinity);
+  test('getDamage full when dura >= 30%', () => {
+    const w = new Weapon('test', 20, 100, 2);
+    w.takeDamage(70);
+    expect(w.getDamage()).toBe(20);
   });
 
-  test('getDamage returns full damage when durability >= 30%', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    expect(weapon.getDamage()).toBe(20);
-    weapon.takeDamage(50);
-    expect(weapon.getDamage()).toBe(20);
+  test('getDamage half when dura < 30%', () => {
+    const w = new Weapon('test', 20, 100, 2);
+    w.takeDamage(71);
+    expect(w.getDamage()).toBe(10);
   });
 
-  test('getDamage returns half damage when durability < 30%', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    weapon.takeDamage(75);
-    expect(weapon.getDamage()).toBe(10);
+  test('getDamage 0 when dura 0', () => {
+    const w = new Weapon('test', 20, 100, 2);
+    w.takeDamage(100);
+    expect(w.getDamage()).toBe(0);
   });
 
-  test('getDamage returns 0 when durability = 0', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    weapon.takeDamage(100);
-    expect(weapon.getDamage()).toBe(0);
-  });
-
-  test('isBroken returns true when durability = 0', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    weapon.takeDamage(100);
-    expect(weapon.isBroken()).toBe(true);
-  });
-
-  test('isBroken returns false when durability > 0', () => {
-    const weapon = new Weapon('Test', 20, 100, 2);
-    expect(weapon.isBroken()).toBe(false);
+  test('isBroken works', () => {
+    const w = new Weapon('test', 20, 100, 2);
+    expect(w.isBroken()).toBe(false);
+    w.takeDamage(100);
+    expect(w.isBroken()).toBe(true);
   });
 });
 
 describe('Arm', () => {
-  test('creates with correct characteristics', () => {
+  test('correct properties', () => {
     const arm = new Arm();
-    expect(arm.name).toBe('Hand');
+    expect(arm.name).toBe('Рука');
     expect(arm.attack).toBe(1);
     expect(arm.durability).toBe(Infinity);
     expect(arm.range).toBe(1);
   });
+
+  test('takeDamage does nothing', () => {
+    const arm = new Arm();
+    arm.takeDamage(999);
+    expect(arm.durability).toBe(Infinity);
+  });
 });
 
 describe('Bow', () => {
-  test('creates with correct characteristics', () => {
+  test('correct properties', () => {
     const bow = new Bow();
-    expect(bow.name).toBe('Bow');
+    expect(bow.name).toBe('Лук');
     expect(bow.attack).toBe(10);
     expect(bow.durability).toBe(200);
     expect(bow.range).toBe(3);
@@ -90,9 +85,9 @@ describe('Bow', () => {
 });
 
 describe('Sword', () => {
-  test('creates with correct characteristics', () => {
+  test('correct properties', () => {
     const sword = new Sword();
-    expect(sword.name).toBe('Sword');
+    expect(sword.name).toBe('Меч');
     expect(sword.attack).toBe(25);
     expect(sword.durability).toBe(500);
     expect(sword.range).toBe(1);
@@ -100,9 +95,9 @@ describe('Sword', () => {
 });
 
 describe('Knife', () => {
-  test('creates with correct characteristics', () => {
+  test('correct properties', () => {
     const knife = new Knife();
-    expect(knife.name).toBe('Knife');
+    expect(knife.name).toBe('Нож');
     expect(knife.attack).toBe(5);
     expect(knife.durability).toBe(300);
     expect(knife.range).toBe(1);
@@ -110,9 +105,9 @@ describe('Knife', () => {
 });
 
 describe('Staff', () => {
-  test('creates with correct characteristics', () => {
+  test('correct properties', () => {
     const staff = new Staff();
-    expect(staff.name).toBe('Staff');
+    expect(staff.name).toBe('Посох');
     expect(staff.attack).toBe(8);
     expect(staff.durability).toBe(300);
     expect(staff.range).toBe(2);
@@ -120,19 +115,19 @@ describe('Staff', () => {
 });
 
 describe('LongBow', () => {
-  test('creates with correct characteristics', () => {
-    const longBow = new LongBow();
-    expect(longBow.name).toBe('Long Bow');
-    expect(longBow.attack).toBe(15);
-    expect(longBow.range).toBe(4);
-    expect(longBow.durability).toBe(200);
+  test('correct properties', () => {
+    const lb = new LongBow();
+    expect(lb.name).toBe('Длинный лук');
+    expect(lb.attack).toBe(15);
+    expect(lb.range).toBe(4);
+    expect(lb.durability).toBe(200);
   });
 });
 
 describe('Axe', () => {
-  test('creates with correct characteristics', () => {
+  test('correct properties', () => {
     const axe = new Axe();
-    expect(axe.name).toBe('Axe');
+    expect(axe.name).toBe('Секира');
     expect(axe.attack).toBe(27);
     expect(axe.durability).toBe(800);
     expect(axe.range).toBe(1);
@@ -140,11 +135,11 @@ describe('Axe', () => {
 });
 
 describe('StormStaff', () => {
-  test('creates with correct characteristics', () => {
-    const stormStaff = new StormStaff();
-    expect(stormStaff.name).toBe('Storm Staff');
-    expect(stormStaff.attack).toBe(10);
-    expect(stormStaff.range).toBe(3);
-    expect(stormStaff.durability).toBe(300);
+  test('correct properties', () => {
+    const ss = new StormStaff();
+    expect(ss.name).toBe('Посох Бури');
+    expect(ss.attack).toBe(10);
+    expect(ss.range).toBe(3);
+    expect(ss.durability).toBe(300);
   });
 });
